@@ -22,9 +22,9 @@ class AppBarForSignIn extends PreferredSize {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: context.dynamicHeight(0.01)),
-                      buildBackIconButton(context),
-                      const Spacer(),
-                      buildTitle(),
+                      Expanded(flex:1,child: buildBackIconButton(context)),
+                      const Spacer(flex: 2,),
+                      Expanded(flex:2,child:  buildTitle(),)
                     ],
                   ),
                 ),

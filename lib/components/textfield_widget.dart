@@ -12,6 +12,9 @@ class TextFieldWidget extends TextFormField {
   late final dynamic suffixIconColor;
   late final TextInputType? textInputType;
   late final dynamic inputBorder;
+  late final bool obscureText;
+
+
   late final String? Function(String?)? validators;
   TextFieldWidget(
       {Key? key,
@@ -24,12 +27,14 @@ class TextFieldWidget extends TextFormField {
         this.hintTextColor = Colors.black26,
         this.suffixIcon,
         this.suffixIconColor,
-        this.validators})
+        this.validators,
+        this.obscureText = false})
       : super(
     key: key,
     controller: textController,
     cursorColor: cursorColor,
     onTap: onTap,
+    obscureText:obscureText ,
     decoration: InputDecoration(
       filled: true,
       fillColor: const Color(0xFFECEFF1),

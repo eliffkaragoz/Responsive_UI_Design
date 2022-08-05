@@ -71,15 +71,15 @@ class _SignInViewState extends State<SignInView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-                const Text("Username or email",
-                    style: TextStyle(color: Colors.black38)),
-                SizedBox(height: context.dynamicHeight(0.02)),
-                buildEmailTextField(),
-                SizedBox(height: context.dynamicHeight(0.03)),
-                const Text("Password",
-                    style: TextStyle(color: Colors.black38)),
-                SizedBox(height: context.dynamicHeight(0.02)),
-                buildPasswordTextField(),
+          const Text("Username or email",
+              style: TextStyle(color: Colors.black38)),
+          SizedBox(height: context.dynamicHeight(0.02)),
+          buildEmailTextField(),
+          SizedBox(height: context.dynamicHeight(0.03)),
+          const Text("Password",
+              style: TextStyle(color: Colors.black38)),
+          SizedBox(height: context.dynamicHeight(0.02)),
+          buildPasswordTextField(),
         ],
       ),
     );
@@ -111,6 +111,7 @@ class _SignInViewState extends State<SignInView> {
         context: context,
         textController: passwordController,
         hintText: "Enter your password",
+        obscureText: true,
         validators: (value) {
           return value!.isNotEmpty  ? null : "";
         }

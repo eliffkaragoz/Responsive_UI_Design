@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 
-class TextButtonWidget extends TextButton {
-  late final BuildContext context;
-  late final VoidCallback onPres;
-  late final String buttonText;
-  late final Color? textColor;
-  late final double? textSize;
+class MyTextButton extends StatelessWidget {
+  const MyTextButton({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+    this.textColor,
+    this.textSize,
+  }) : super(key: key);
 
-  TextButtonWidget(
-      {Key? key,
-        required this.context,
-        required this.onPres,
-        required this.buttonText,
-        this.textColor = const  Color(0xFF283593),
-        this.textSize = 15
-      })
-      : super(
-    key: key,
-    onPressed: onPres,
-    child: Text(
-        buttonText,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(color:textColor ,fontSize: textSize)
-      //TextStyle(color: textColor,),
-    ),
-  );
+  final VoidCallback onPressed;
+  final String text;
+  final Color? textColor;
+  final double? textSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(text,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: textColor, fontSize: textSize)),
+    );
+  }
 }

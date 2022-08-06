@@ -20,8 +20,15 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
 }
 
+extension BorderExtension on BuildContext {
+  BorderRadiusGeometry get borderValue =>
+      const BorderRadius.all(Radius.circular(16.0));
+  EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);
+  EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
+}
+
 extension EmptyWidget on BuildContext {
   Widget get emptyWidgetHeight => SizedBox(
-    height: lowValue,
-  );
+        height: lowValue,
+      );
 }

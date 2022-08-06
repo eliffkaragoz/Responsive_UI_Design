@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ui_design/extension/context_extension.dart';
+import '../../extension/context_extension.dart';
 
 import '../../theme/color_constants.dart';
 
@@ -16,15 +16,21 @@ class AppBarForSignIn extends PreferredSize {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: context.paddingMedium * 1.3,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: context.dynamicWidth(0.1)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: context.dynamicHeight(0.01)),
-                      Expanded(flex:1,child: buildBackIconButton(context)),
-                      const Spacer(flex: 2,),
-                      Expanded(flex:2,child:  buildTitle(),)
+                      Expanded(flex: 1, child: buildBackIconButton(context)),
+                      const Spacer(
+                        flex: 2,
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: buildTitle(),
+                      )
                     ],
                   ),
                 ),
@@ -38,7 +44,6 @@ class AppBarForSignIn extends PreferredSize {
             ),
           ),
         );
-
   static IconButton buildBackIconButton(BuildContext context) {
     return IconButton(
       padding: EdgeInsets.zero,
@@ -52,14 +57,11 @@ class AppBarForSignIn extends PreferredSize {
 
   static Text buildTitle() {
     return const Text(
-                      "Sign In",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold),
-                    );
+      "Sign In",
+      style: TextStyle(
+          color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.bold),
+    );
   }
-
 
   static Transform buildCircle(
       {required int colorValue, double x = 0, double y = 0}) {

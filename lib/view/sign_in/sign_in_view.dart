@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ui_design/components/buttons/elevated_button_widget.dart';
-import 'package:ui_design/components/buttons/text_button.dart';
-import 'package:ui_design/components/textfield_widget.dart';
-import 'package:ui_design/extension/context_extension.dart';
-import 'package:ui_design/view/sign_in/signin_appbar_view.dart';
+import '../../components/buttons/elevated_button_widget.dart';
+import '../../components/buttons/text_button.dart';
+import '../../components/textfield_widget.dart';
+import '../../extension/context_extension.dart';
+import 'signin_appbar_view.dart';
 import '../../theme/color_constants.dart';
 
 class SignInView extends StatefulWidget {
@@ -34,25 +34,42 @@ class _SignInViewState extends State<SignInView> {
   Widget _buildMainContainer() {
     return Container(
       color: CustomColorScheme.instance.appBlue,
-      child: Container(
-        padding: EdgeInsets.all((context.dynamicHeight(0.04))),
-        decoration: const BoxDecoration(
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(23), topLeft: Radius.circular(23)),
+        child: Container(
+          // padding: EdgeInsets.all((context.dynamicHeight(0.04))),
+          decoration: const BoxDecoration(
             color: Color(0xFFFFFFFF),
-            borderRadius: BorderRadius.only(topRight: Radius.circular(23), topLeft: Radius.circular(23))),
-        child: ListView(
-          children: [
-            const Text("Welcome Back", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24)),
-            SizedBox(height: context.dynamicHeight(0.01)),
-            const Text("Hello there, sign in to continue!", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black38)),
-            SizedBox(height: context.dynamicHeight(0.05)),
-            buildUserAndPasswordController(),
-            SizedBox(height: context.dynamicHeight(0.01)),
-            buildForgotPasswordButton(),
-            SizedBox(height: context.dynamicHeight(0.01)),
-            buildSignInButton(),
-            SizedBox(height: context.dynamicHeight(0.11)),
-            _buildSignUpText(),
-          ],
+            // borderRadius: BorderRadius.only(
+            //     topRight: Radius.circular(23), topLeft: Radius.circular(23)),
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all((context.dynamicHeight(0.04))),
+              child: Column(
+                children: [
+                  const Text("Welcome Back",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w900, fontSize: 24)),
+                  SizedBox(height: context.dynamicHeight(0.01)),
+                  const Text("Hello there, sign in to continue!",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black38)),
+                  SizedBox(height: context.dynamicHeight(0.05)),
+                  buildUserAndPasswordController(),
+                  SizedBox(height: context.dynamicHeight(0.01)),
+                  buildForgotPasswordButton(),
+                  SizedBox(height: context.dynamicHeight(0.01)),
+                  buildSignInButton(),
+                  SizedBox(height: context.dynamicHeight(0.11)),
+                  _buildSignUpText(),
+                  _buildSignUpText(),
+                  _buildSignUpText(),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -64,8 +81,7 @@ class _SignInViewState extends State<SignInView> {
       autovalidateMode: autovalidateMode,
       onChanged: () {
         setState(() {
-          isFormValidate =
-          formKey.currentState!.validate() ? true : false;
+          isFormValidate = formKey.currentState!.validate() ? true : false;
         });
       },
       child: Column(
@@ -76,8 +92,7 @@ class _SignInViewState extends State<SignInView> {
           SizedBox(height: context.dynamicHeight(0.02)),
           buildEmailTextField(),
           SizedBox(height: context.dynamicHeight(0.03)),
-          const Text("Password",
-              style: TextStyle(color: Colors.black38)),
+          const Text("Password", style: TextStyle(color: Colors.black38)),
           SizedBox(height: context.dynamicHeight(0.02)),
           buildPasswordTextField(),
         ],
@@ -85,51 +100,47 @@ class _SignInViewState extends State<SignInView> {
     );
   }
 
-  TextFieldWidget buildEmailTextField() {
-    return TextFieldWidget(
-        context: context,
-        textController: emailController,
+  MyTextFormField buildEmailTextField() {
+    return MyTextFormField(
+        controller: emailController,
         hintText: "Enter your username or email",
         hintTextColor: Colors.black26,
         onTap: () {
           autovalidateMode = AutovalidateMode.always;
         },
-        suffixIcon: emailController.text.length >= 1 ? Icons.check_circle : null,
+        suffixIcon: emailController.text.isNotEmpty ? Icons.check_circle : null,
         suffixIconColor: CustomColorScheme.instance.appBlue,
         validators: (value) {
           return value!.isNotEmpty ? null : "";
-        }
-    );
+        });
   }
 
-  TextFieldWidget buildPasswordTextField() {
-    return TextFieldWidget(
+  MyTextFormField buildPasswordTextField() {
+    return MyTextFormField(
         onTap: () async {},
         suffixIcon:
-        passwordController.text.length >= 1? Icons.check_circle : null,
+            passwordController.text.isNotEmpty ? Icons.check_circle : null,
         suffixIconColor: CustomColorScheme.instance.appBlue,
-        context: context,
-        textController: passwordController,
+        controller: passwordController,
         hintText: "Enter your password",
         obscureText: true,
         validators: (value) {
-          return value!.isNotEmpty  ? null : "";
-        }
-    );
+          return value!.isNotEmpty ? null : "";
+        });
   }
 
   Align buildForgotPasswordButton() {
     return Align(
         alignment: Alignment.bottomLeft,
-        child: TextButtonWidget(
-            context: context, onPres: () {}, buttonText: "Forgot Password?"));
+        child: MyTextButton(
+          onPressed: () {},
+          text: "Forgot Password?",
+        ));
   }
 
-  ElevatedButtonWidget buildSignInButton() {
-    return ElevatedButtonWidget(
-      textColor: CustomColorScheme.instance.appWhite,
-      context: context,
-      onPres: () {},
+  MyElevatedButton buildSignInButton() {
+    return MyElevatedButton(
+      onPressed: () {},
       text: "Sign in",
       buttonColor: !isFormValidate
           ? CustomColorScheme.instance.inactiveButtonColor
@@ -140,7 +151,7 @@ class _SignInViewState extends State<SignInView> {
   Row _buildSignUpText() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Text("Don't have an account?"),
-      TextButtonWidget(context: context, onPres: () {}, buttonText: "Sign up")
+      MyTextButton(onPressed: () {}, text: "Sign up")
     ]);
   }
 }

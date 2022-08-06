@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_design/view/welcome/welcome_view.dart';
+
+import 'view/welcome/welcome_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,14 +11,10 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-
-      home: WelcomeView()
-    );
+        home: WelcomeView());
   }
-
 }
-

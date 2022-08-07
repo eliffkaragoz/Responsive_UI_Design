@@ -17,6 +17,11 @@ class MyTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(16.0),
+        primary: Colors.white,
+        textStyle: const TextStyle(fontSize: 20),
+      ),
       onPressed: onPressed,
       child: Text(text,
           style: Theme.of(context)

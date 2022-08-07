@@ -38,11 +38,8 @@ class _SignInViewState extends State<SignInView> {
         borderRadius: const BorderRadius.only(
             topRight: Radius.circular(23), topLeft: Radius.circular(23)),
         child: Container(
-          // padding: EdgeInsets.all((context.dynamicHeight(0.04))),
           decoration: const BoxDecoration(
             color: Color(0xFFFFFFFF),
-            // borderRadius: BorderRadius.only(
-            //     topRight: Radius.circular(23), topLeft: Radius.circular(23)),
           ),
           child: SingleChildScrollView(
             child: Padding(
@@ -63,8 +60,6 @@ class _SignInViewState extends State<SignInView> {
                   SizedBox(height: context.dynamicHeight(0.01)),
                   buildSignInButton(),
                   SizedBox(height: context.dynamicHeight(0.11)),
-                  _buildSignUpText(),
-                  _buildSignUpText(),
                   _buildSignUpText(),
                 ],
               ),
@@ -104,7 +99,7 @@ class _SignInViewState extends State<SignInView> {
     return MyTextFormField(
         controller: emailController,
         hintText: "Enter your username or email",
-        hintTextColor: Colors.black26,
+        hintTextColor: Colors.black38,
         onTap: () {
           autovalidateMode = AutovalidateMode.always;
         },
@@ -123,6 +118,7 @@ class _SignInViewState extends State<SignInView> {
         suffixIconColor: CustomColorScheme.instance.appBlue,
         controller: passwordController,
         hintText: "Enter your password",
+        hintTextColor: Colors.black38,
         obscureText: true,
         validators: (value) {
           return value!.isNotEmpty ? null : "";

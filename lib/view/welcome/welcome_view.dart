@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_design/components/text.dart';
 import '../../components/buttons/elevated_button_widget.dart';
 import '../../components/buttons/text_button.dart';
 import '../../extension/context_extension.dart';
@@ -22,28 +23,27 @@ class WelcomeView extends StatelessWidget {
             Expanded(
                 flex: 5,
                 child: FittedBox(
-                    child: Text("Welcome",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: CustomColorScheme.instance.appBlue,
-                        )))),
+                  child: MyText(
+                    text: "Welcome",
+                    color: CustomColorScheme.instance.appBlue,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )),
             const Spacer(flex: 3),
             Expanded(
                 flex: 2,
                 child: FittedBox(
-                    child: Text("Manage your expenses",
-                        style: TextStyle(
-                          color: CustomColorScheme.instance.appBlue,
-                        )))),
+                    child: MyText(
+                  text: "Manage your expenses",
+                  color: CustomColorScheme.instance.appBlue,
+                ))),
             Expanded(
                 flex: 3,
                 child: FittedBox(
-                    child: Text(
-                  "seamlessly & intuitively",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: CustomColorScheme.instance.appBlue,
-                  ),
+                    child: MyText(
+                  text: "seamlessly & intuitively",
+                  fontWeight: FontWeight.w400,
+                  color: CustomColorScheme.instance.appBlue,
                 ))),
             const Spacer(
               flex: 5,
@@ -89,8 +89,11 @@ class WelcomeView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Already have an account?",
-            style: TextStyle(color: Colors.black45)),
+        const MyText(
+          text: "Already have an account?",
+          color: Colors.black45,
+          fontSize: 17,
+        ),
         MyTextButton(
             onPressed: () {
               Navigator.push(context,

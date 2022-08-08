@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_design/components/text.dart';
 import '../../components/buttons/elevated_button_widget.dart';
 import '../../components/buttons/text_button.dart';
 import '../../components/textfield_widget.dart';
@@ -45,14 +46,19 @@ class _SignInViewState extends State<SignInView> {
             child: Padding(
               padding: EdgeInsets.all((context.dynamicHeight(0.04))),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Welcome Back",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 24)),
+                  const MyText(
+                      text: "Welcome Back",
+                      fontWeight: FontWeight.w900,
+                      fontSize: 24),
                   SizedBox(height: context.dynamicHeight(0.01)),
-                  const Text("Hello there, sign in to continue!",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black38)),
+                  const MyText(
+                      text: "Hello there, sign in to continue!",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Colors.black38),
                   SizedBox(height: context.dynamicHeight(0.05)),
                   buildUserAndPasswordController(),
                   SizedBox(height: context.dynamicHeight(0.01)),
@@ -82,12 +88,19 @@ class _SignInViewState extends State<SignInView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Username or email",
-              style: TextStyle(color: Colors.black38)),
+          const MyText(
+            text: "Username or email",
+            color: Colors.black38,
+            fontSize: 14,
+          ),
           SizedBox(height: context.dynamicHeight(0.02)),
           buildEmailTextField(),
           SizedBox(height: context.dynamicHeight(0.03)),
-          const Text("Password", style: TextStyle(color: Colors.black38)),
+          const MyText(
+            text: "Password",
+            color: Colors.black38,
+            fontSize: 14,
+          ),
           SizedBox(height: context.dynamicHeight(0.02)),
           buildPasswordTextField(),
         ],

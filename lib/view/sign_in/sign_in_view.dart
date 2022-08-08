@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_design/components/text.dart';
+import '../../components/text.dart';
 import '../../components/buttons/elevated_button_widget.dart';
 import '../../components/buttons/text_button.dart';
 import '../../components/textfield_widget.dart';

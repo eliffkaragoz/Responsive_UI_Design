@@ -15,39 +15,22 @@ class WelcomeView extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.dynamicWidth(0.1)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: context.orientation == Orientation.portrait
+            ? buildPortraitDesign(context)
+            : buildLandspaceDesign(context),
+        // böyle ayırmak yerine buildPortraitDesign içinde de düzenleme yapabilirdim
+        // biraz kullanınca kolayına nasıl geliyorsa öyle yapmaya başlarsın zaten ^_^
+      ),
+    );
+  }
+
+  Column buildLandspaceDesign(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+            flex: 35, child: Center(child: Image.network(sampleChairsUrl))),
+        Row(
           children: [
-            Expanded(
-                flex: 35, child: Center(child: Image.network(sampleChairsUrl))),
-            Expanded(
-                flex: 5,
-                child: FittedBox(
-                  child: MyText(
-                    text: "Welcome",
-                    color: CustomColorScheme.instance.appBlue,
-                    fontWeight: FontWeight.w600,
-                  ),
-                )),
-            const Spacer(flex: 3),
-            Expanded(
-                flex: 2,
-                child: FittedBox(
-                    child: MyText(
-                  text: "Manage your expenses",
-                  color: CustomColorScheme.instance.appBlue,
-                ))),
-            Expanded(
-                flex: 3,
-                child: FittedBox(
-                    child: MyText(
-                  text: "seamlessly & intuitively",
-                  fontWeight: FontWeight.w400,
-                  color: CustomColorScheme.instance.appBlue,
-                ))),
-            const Spacer(
-              flex: 5,
-            ),
             Expanded(
               flex: 5,
               child: buildSignInWithGoogleButton(),
@@ -57,13 +40,64 @@ class WelcomeView extends StatelessWidget {
               flex: 5,
               child: buildSignUpButton(),
             ),
-            Expanded(
-              flex: 7,
-              child: buildSignInButton(context),
-            )
           ],
         ),
-      ),
+        Expanded(
+          flex: 7,
+          child: buildSignInButton(context),
+        )
+      ],
+    );
+  }
+
+  Column buildPortraitDesign(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+            flex: 35, child: Center(child: Image.network(sampleChairsUrl))),
+        Expanded(
+            flex: 5,
+            child: FittedBox(
+              child: MyText(
+                text: "Welcome",
+                color: CustomColorScheme.instance.appBlue,
+                fontWeight: FontWeight.w600,
+              ),
+            )),
+        const Spacer(flex: 3),
+        Expanded(
+            flex: 2,
+            child: FittedBox(
+                child: MyText(
+              text: "Manage your expenses",
+              color: CustomColorScheme.instance.appBlue,
+            ))),
+        Expanded(
+            flex: 3,
+            child: FittedBox(
+                child: MyText(
+              text: "seamlessly & intuitively",
+              fontWeight: FontWeight.w400,
+              color: CustomColorScheme.instance.appBlue,
+            ))),
+        const Spacer(
+          flex: 5,
+        ),
+        Expanded(
+          flex: 5,
+          child: buildSignInWithGoogleButton(),
+        ),
+        const Spacer(),
+        Expanded(
+          flex: 5,
+          child: buildSignUpButton(),
+        ),
+        Expanded(
+          flex: 7,
+          child: buildSignInButton(context),
+        )
+      ],
     );
   }
 

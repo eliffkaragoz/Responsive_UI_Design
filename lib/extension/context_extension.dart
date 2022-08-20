@@ -5,6 +5,8 @@ extension ContextExtension on BuildContext {
   double dynamicWidth(double val) => MediaQuery.of(this).size.width * val;
   double dynamicHeight(double val) => MediaQuery.of(this).size.height * val;
 
+  Orientation get orientation =>
+      MediaQuery.of(this).orientation; // ekranın yön bilgisi
   ThemeData get theme => Theme.of(this);
 }
 
